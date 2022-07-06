@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ProductService from '../services/ProductService'
 import HeaderComponent from './HeaderComponent';
 import Moment from 'moment';
+import axios from 'axios';
 import LeftNavBar from './elements/LeftNavBar';
 import Pagination from "react-js-pagination";
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,9 +14,9 @@ class ListProductComponent extends Component {
     this.state = {
       products: [],
       IDDelete: "",
-      itemCount : 0,
-      isLoaded : false,
-      currentPage : 1,
+      itemCount: 0,
+      isLoaded: false,
+      currentPage: 1,
     }
 
     this.addProduct = this.addProduct.bind(this);
@@ -23,17 +24,30 @@ class ListProductComponent extends Component {
     this.saveAndContinue = this.saveAndContinue.bind(this);
   }
   componentDidMount() {
-     ProductService.getProducts(1).then((res)=> {
-      this.setState({ products: res.data.data.data,
-                      itemCount: res.data.data.total});
-   
+    var retrievedObject = localStorage.getItem('token');
+    const token = retrievedObject;
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+
+    axios.get("http://34.124.251.21:8000/api/v1/admin/products/?page=1", config).then((res) => {
+      this.setState({
+        products: res.data.data.data,
+        itemCount: res.data.data.total
+      });
+
     })
   }
   handlePageChange = pageNumber => {
-    console.log(`active page is ${pageNumber}`);
-    ProductService.getProducts(pageNumber)
+    var retrievedObject = localStorage.getItem('token');
+    const token = retrievedObject;
+    const config = {
+      headers: { Authorization: `Bearer ${token}` }
+    }
+
+    axios.get("http://34.124.251.21:8000/api/v1/admin/products/?page=" + pageNumber, config)
       .then(res => {
-        this.setState({ products: res.data.data.data});
+        this.setState({ products: res.data.data.data });
       });
     this.setState({ currentPage: pageNumber });
   };
@@ -109,7 +123,7 @@ class ListProductComponent extends Component {
                       <h2>List Product</h2>
                       <ul className="nav navbar-right panel_toolbox">
                         <li><button onClick={() => this.addProduct()} className='btn btn-success'><i className="fa fa-plus"></i> New Product</button></li>
-                     
+
                         <li><a className="collapse-link"><i className="fa fa-chevron-up"></i></a>
                         </li>
                         <li><a className="close-link"><i className="fa fa-close"></i></a>
@@ -145,7 +159,7 @@ class ListProductComponent extends Component {
                                 return (
                                   <tr key={i} className="even pointer">
                                     <td className="table-td-center">
-                                     {i + 1}
+                                      {data.id}
                                     </td>
                                     <td className="table-td-center"> {data.name} </td>
                                     <td className="table-td-center"> {data.price}</td>
@@ -164,15 +178,15 @@ class ListProductComponent extends Component {
                             }
                           </tbody>
                         </table>
-                        
+
                         <Pagination
                           activePage={this.state.currentPage}
                           itemsCountPerPage={25}
                           totalItemsCount={this.state.itemCount}
                           pageRangeDisplayed={1}
-                          onChange={this.handlePageChange}    
+                          onChange={this.handlePageChange}
                           breakClassName={'page-item'}
-                          
+
                           breakLinkClassName={'page-link'}
                           containerClassName={'pagination'}
                           pageClassName={'page-item'}

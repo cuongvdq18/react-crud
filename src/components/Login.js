@@ -10,6 +10,7 @@ class Login extends Component {
             password: "",
             messageError: "",
         };
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.changeMessageHandler = this.changeMessageHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -50,7 +51,7 @@ class Login extends Component {
                 localStorage.setItem("token", res.data.meta.token);
                 var userObject = res.data.data;
                 localStorage.setItem('data', JSON.stringify(userObject));
-                this.props.history.push('/products');
+                this.props.history.replace('/products');
             }
 
         });
@@ -59,7 +60,7 @@ class Login extends Component {
     render() {
 
         return (
-            <div className='backgroud-login'>
+            <div className='backgroud-login' id="bg">
                 <div className="container-login">
                     <div className="d-flex justify-content-center h-100">
                         <div className="card-login">
