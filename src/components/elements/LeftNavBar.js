@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom';
             <>
                 <div className="col-md-3 left_col">
                     <div className="left_col scroll-view">
-                        <div className="navbar nav_title" style={{border: 0}}>
+                        <div className="navbar nav_title" >
                             <a href="index.html" className="site_title"><i className="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
                         </div>
 

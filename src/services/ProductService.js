@@ -3,7 +3,6 @@ import axios from 'axios';
 const Product_API_BASE_URL = "http://34.124.251.21:8000/api/v1/admin/products";
 var retrievedObject = localStorage.getItem('token');
 		const token = retrievedObject;
-        console.log(token)
 		const config = {
 			headers: { Authorization: `Bearer ${token}` }
 		}

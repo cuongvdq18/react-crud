@@ -153,15 +153,6 @@ class CreateProductComponent extends Component {
         }
         
     }
-    resetInput(event){
-        // event.target.name.value = null;
-        // event.target.price.value = "";
-        // event.target.unit.value = "";
-        // event.target.description.value = "";
-        let string = event.target.name.value;
-        console.log(string)
-
-    }
     getTitle() {
         if (this.state.id === '_add') {
             return <h3 className="text-center">Add Product</h3>
@@ -222,8 +213,7 @@ class CreateProductComponent extends Component {
 
                                                 <span className="section">
                                                     {
-                                                        this.getTitle()
-                                                    
+                                                        this.getTitle()                                               
                                                     }
                                                 </span>
                                                

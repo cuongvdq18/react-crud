@@ -5,7 +5,9 @@
 html,body{
 height: 100%;
 font-family: 'Numans', sans-serif;
-
+}
+.container{
+  position: relative;
 }
 .backgroud-login{
     width: 100%;

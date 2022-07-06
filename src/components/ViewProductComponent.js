@@ -33,7 +33,6 @@ class ViewProductComponent extends Component {
     componentDidMount() {
         ProductService.getProductById(this.state.id).then(res => {
             this.setState({ product: res.data.data });
-            console.log(res.data.data);
         })
     }
     editProduct(id) {
@@ -50,7 +49,7 @@ class ViewProductComponent extends Component {
     }
     render() {
         if (this.state.product === null) {
-            return <PageNotFound/>
+            return <PageNotFound />
         }
         else {
             return (
@@ -88,61 +87,65 @@ class ViewProductComponent extends Component {
                                 </div>
                                 <div className="clearfix"></div>
                                 <div className="row">
-
                                     <div className="col-12">
-                                        <div className="card-body">
-                                            <table className="table table-bordered table-striped">
-                                                <tbody>
-                                                    <tr>
-                                                        <th className="col-2">Product Name</th>
-                                                        <td className="col-10">{this.state.product.name}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Unit</th>
-                                                        <td>{this.state.product.unit}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Price</th>
-                                                        <td>{this.state.product.price}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Creator</th>
-                                                        <td>{this.state.product.created_user}</td>
-                                                    </tr>
+                                        <div className="x_panel">
+                                            <h4>Product Detail</h4>
+                                            <div className="card-body">
+                                                <table className="table table-bordered table-striped">
+                                                    <tbody>
+                                                        <tr>
+                                                            <th className="col-2">Product Name</th>
+                                                            <td className="col-10">{this.state.product.name}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Unit</th>
+                                                            <td>{this.state.product.unit}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Price</th>
+                                                            <td>{this.state.product.price}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Creator</th>
+                                                            <td>{this.state.product.created_user}</td>
+                                                        </tr>
 
-                                                    <tr>
-                                                        <th>Date Created</th>
-                                                        <td>{this.state.product.created_at = Moment().format('DD-MM-YYYY')}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Updater</th>
-                                                        <td>{this.state.product.updated_user}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Update Day</th>
-                                                        <td>{this.state.product.updated_at = Moment().format('DD-MM-YYYY')}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Description</th>
-                                                        <td>{this.state.product.description}</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                            <div className='row'>
-                                                <div className="col-auto mr-auto"> <button onClick={this.cancel.bind(this)} className="btn btn-primary">Back</button></div>
-                                                <div className="col-auto">
-                                                    <div className="btn-group mr-2" role="group" aria-label="First group">
-                                                        <button className="btn btn-info" onClick={() => this.editProduct(this.state.product.id)}>
-                                                            <i className="fa fa-edit"></i>
-                                                        </button>
+                                                        <tr>
+                                                            <th>Date Created</th>
+                                                            <td>{this.state.product.created_at = Moment().format('DD-MM-YYYY')}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Updater</th>
+                                                            <td>{this.state.product.updated_user}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Update Day</th>
+                                                            <td>{this.state.product.updated_at = Moment().format('DD-MM-YYYY')}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Description</th>
+                                                            <td>{this.state.product.description}</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div className='row'>
+                                                    <div className="col-auto mr-auto"> </div>
+                                                    <div className="col-auto">
+                                                        <div className="btn-group mr-2" role="group" aria-label="First group">
+                                                            <button className="btn btn-info" onClick={() => this.editProduct(this.state.product.id)}>
+                                                                <i className="fa fa-edit"></i>
+                                                            </button>
 
+                                                        </div>
+                                                        <div className="btn-group mr-2" role="group" aria-label="First group">
+                                                            <button className="btn btn-danger" data-toggle="modal" data-target=".ModalDelete">
+                                                                <i className="fa fa-trash"></i>
+                                                            </button>
+                                                        </div>
                                                     </div>
-                                                    <div className="btn-group mr-2" role="group" aria-label="First group">
-                                                        <button className="btn btn-danger" data-toggle="modal" data-target=".ModalDelete">
-                                                            <i className="fa fa-trash"></i>
-                                                        </button>
-                                                    </div>
+
                                                 </div>
+                                                <div className="col-auto mr-auto"> <button onClick={this.cancel.bind(this)} className="btn btn-primary">Back</button></div>
                                             </div>
                                         </div>
                                     </div>

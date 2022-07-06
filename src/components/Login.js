@@ -42,7 +42,6 @@ class Login extends Component {
                 if(res.data.errors.password === undefined) {
                      getMess = res.data.errors.username[0]
                 }
-                console.log(getMess)
                 this.setState({
                     messageError: getMess
                 })

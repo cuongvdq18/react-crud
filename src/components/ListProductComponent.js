@@ -64,7 +64,6 @@ class ListProductComponent extends Component {
 
   saveAndContinue(id) {
     this.setState({ IDDelete: id })
-    console.log(this.state.IDDelete);
   }
   addProduct() {
     this.props.history.push('/add-product/_add');
